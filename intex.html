@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zilola SQL Academy</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d1b;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#101a30;padding:20px 7%;
+ display:flex;justify-content:space-between;
+ align-items:center;flex-wrap:wrap;
+}
+.logo{font-size:23px;font-weight:bold;color:#62aaff}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+nav a:hover{color:#62aaff}
+.hero{
+ padding:85px 20px;text-align:center;
+ background:linear-gradient(130deg,#172f59,#38245e);
+}
+.hero h1{font-size:43px}
+.hero p{color:#d0dcf5;font-size:18px}
+button{
+ background:#428df5;color:white;
+ border:0;padding:12px 20px;
+ border-radius:9px;cursor:pointer;
+}
+button:hover{background:#7660e8}
+section{padding:45px 7%}
+h2{color:#78baff}
+.cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;
+}
+.card{
+ background:#14213a;padding:22px;
+ border:1px solid #2b3d60;
+ border-radius:15px;margin-bottom:12px;
+}
+.card h3{color:#81baff}
+.card p{color:#c1cce0;line-height:1.6}
+input,textarea{
+ width:100%;padding:13px;margin:8px 0;
+ background:#080d1b;color:white;
+ border:1px solid #35486d;border-radius:8px;
+}
+.result{
+ background:#071d25;padding:15px;
+ border-radius:10px;color:#60e5b2;
+ margin-top:12px;white-space:pre-wrap;
+}
+.stat{font-size:24px;color:#65b4ff;font-weight:bold}
+footer{
+ text-align:center;padding:25px;
+ background:#101a30;color:#aab8d0;
+}
+@media(max-width:600px){
+ .hero h1{font-size:30px}
+ header{gap:15px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">ZILOLA SQL ACADEMY</div>
+ <nav>
+  <a href="#home">Bosh sahifa</a>
+  <a href="#courses">Kurslar</a>
+  <a href="#lessons">Darslar</a>
+  <a href="#lab">Laboratoriya</a>
+  <a href="#test">Testlar</a>
+  <a href="#profile">Profil</a>
+ </nav>
+</header>
+
+<div class="hero" id="home">
+ <h1>SQL olamiga xush kelibsiz!</h1>
+ <p>Ma'lumotlar bazasini noldan professional darajagacha o‘rganing.</p>
+ <button onclick="location.href='#courses'">Kurslarni boshlash →</button>
+</div>
+
+<section>
+ <div class="cards">
+  <div class="card">
+   <p>📚 Bajarilgan darslar</p>
+   <div class="stat" id="done">0</div>
+  </div>
+  <div class="card">
+   <p>⭐ To‘plangan XP</p>
+   <div class="stat" id="xp">0</div>
+  </div>
+  <div class="card">
+   <p>📝 Yechilgan testlar</p>
+   <div class="stat" id="tests">0</div>
+  </div>
+ </div>
+</section>
+
+<section id="courses">
+ <h2>📚 Bizning kurslarimiz</h2>
+ <div class="cards">
+  <div class="card">
+   <h3>🗄 SQL asoslari</h3>
+   <p>SQL, SELECT, WHERE, ORDER BY buyruqlarini o‘rganing.</p>
+   <button onclick="location.href='#lessons'">Kursni ochish</button>
+  </div>
+  <div class="card">
+   <h3>🔗 Ma'lumotlar bazasi</h3>
+   <p>Jadvallar, kalitlar va bog‘lanishlar haqida bilim oling.</p>
+   <button onclick="alert('Bu modul keyingi bosqichda to‘ldiriladi!')">Kursni ochish</button>
+  </div>
+  <div class="card">
+   <h3>💻 SQL amaliyoti</h3>
+   <p>Amaliy SQL topshiriqlarini bajarib tajriba orttiring.</p>
+   <button onclick="location.href='#lab'">Amaliyotga o‘tish</button>
+  </div>
+ </div>
+</section>
+
+<section id="lessons">
+ <h2>🎓 SQL darslari</h2>
+ <div class="card">
+  <h3>1-dars. SQL nima?</h3>
+  <p>SQL — ma'lumotlar bazasini boshqarish uchun ishlatiladigan so‘rovlar tili.</p>
+  <button onclick="finishLesson(this)">Darsni tugatdim</button>
+ </div>
+ <div class="card">
+  <h3>2-dars. SELECT buyrug‘i</h3>
+  <p>SELECT yordamida jadvaldagi ma'lumotlarni olish mumkin.</p>
+  <div class="result">SELECT * FROM students;</div>
+  <button onclick="finishLesson(this)">Darsni tugatdim</button>
+ </div>
+ <div class="card">
+  <h3>3-dars. WHERE buyrug‘i</h3>
+  <p>WHERE shart asosida kerakli ma'lumotlarni tanlaydi.</p>
+  <div class="result">SELECT * FROM students WHERE age > 18;</div>
+  <button onclick="finishLesson(this)">Darsni tugatdim</button>
+ </div>
+ <div class="card">
+  <h3>4-dars. ORDER BY</h3>
+  <p>Ma'lumotlarni saralash uchun ishlatiladi.</p>
+  <div class="result">SELECT * FROM students ORDER BY name;</div>
+  <button onclick="finishLesson(this)">Darsni tugatdim</button>
+ </div>
+</section>
+
+<section id="lab">
+ <h2>💻 SQL laboratoriya</h2>
+ <div class="card">
+  <p>SQL so‘rovingizni yozing:</p>
+  <textarea id="sql" rows="5">SELECT * FROM students;</textarea>
+  <button onclick="runSQL()">▶ Ishga tushirish</button>
+  <div class="result" id="output">Natija shu yerda chiqadi.</div>
+  <p style="color:#9eacc6;font-size:12px">O‘quv simulyatori: bu haqiqiy ma'lumotlar bazasiga ulanmagan.</p>
+ </div>
+</section>
+
+<section id="test">
+ <h2>📝 SQL bilim testi</h2>
+ <div class="card">
+  <h3 id="question">SQL nimaning qisqartmasi?</h3>
+  <div id="answers"></div>
+  <div id="feedback"></div>
+  <button onclick="nextQuestion()">Keyingi savol →</button>
+ </div>
+</section>
+
+<section id="profile">
+ <h2>👤 Mening profilim</h2>
+ <div class="card">
+  <h3>Zilola SQL Academy o‘quvchisi</h3>
+  <p>Yo‘nalish: SQL va ma'lumotlar bazasi</p>
+  <p>Daraja: Boshlovchi</p>
+  <p>XP: <span id="profileXP">0</span></p>
+ </div>
+</section>
+
+<section>
+ <h2>🏆 Maqsad sari olg‘a!</h2>
+ <div class="card">
+  <p>O‘quv jarayoni</p>
+  <div style="background:#263956;border-radius:10px;height:12px">
+   <div id="progress" style="width:0%;background:#54a9ff;height:12px;border-radius:10px"></div>
+  </div>
+  <p id="percent">0% bajarildi</p>
+ </div>
+</section>
+
+<footer>
+ © 2026 Zilola SQL Academy | Barcha huquqlar himoyalangan
+</footer>
+
+<script>
+let xp=0,done=0,tests=0;
+let q=0;
+let completed=new Set();
+
+function update(){
+ document.getElementById('xp').textContent=xp;
+ document.getElementById('done').textContent=done;
+ document.getElementById('tests').textContent=tests;
+ document.getElementById('profileXP').textContent=xp;
+ let p=Math.round(done/25*100);
+ document.getElementById('progress').style.width=p+'%';
+ document.getElementById('percent').textContent=p+'% bajarildi';
+}
+
+function finishLesson(btn){
+ if(completed.has(btn))return;
+ completed.add(btn);
+ done++;
+ xp+=25;
+ btn.textContent='✓ Bajarildi';
+ btn.disabled=true;
+ update();
+}
+
+function runSQL(){
+ let s=document.getElementById('sql').value.toLowerCase();
+ let result=document.getElementById('output');
+ if(s.includes('select')&&s.includes('students')){
+ result.textContent=
+ 'ID | NAME | AGE\n'+
+ '1 | Aziza | 19\n'+
+ '2 | Jasur | 17\n'+
+ '3 | Madina | 21';
+ }else{
+ result.textContent='Bu simulyator hozircha students jadvali uchun SELECT so‘rovini qo‘llab-quvvatlaydi.';
+ }
+}
+
+const questions=[
+ ['SQL nimaning qisqartmasi?',
+ ['Structured Query Language','Simple Query List','System Question Language'],0],
+ ['Ma’lumot olish buyrug‘i qaysi?',
+ ['DELETE','SELECT','UPDATE'],1],
+ ['Shart yozish uchun qaysi so‘z ishlatiladi?',
+ ['WHERE','TABLE','ORDER'],0],
+ ['Yangi ma’lumot qo‘shish buyrug‘i?',
+ ['SELECT','DELETE','INSERT INTO'],2]
+];
+
+function renderQuestion(){
+ let item=questions[q];
+ document.getElementById('question').textContent=item[0];
+ document.getElementById('feedback').textContent='';
+ document.getElementById('answers').innerHTML='';
+ item[1].forEach((answer,i)=>{
+ let b=document.createElement('button');
+ b.textContent=answer;
+ b.style.display='block';
+ b.style.margin='8px 0';
+ b.style.width='100%';
+ b.onclick=()=>checkAnswer(i);
+ document.getElementById('answers').appendChild(b);
+ });
+}
+
+function checkAnswer(i){
+ let correct=questions[q][2];
+ if(document.getElementById('feedback').textContent)return;
+ if(i===correct){
+ xp+=20;
+ tests++;
+ document.getElementById('feedback').textContent='To‘g‘ri javob! +20 XP 🎉';
+ }else{
+ document.getElementById('feedback').textContent='Noto‘g‘ri. To‘g‘ri javob: '+questions[q][1][correct];
+ }
+ update();
+}
+
+function nextQuestion(){
+ q=(q+1)%questions.length;
+ renderQuestion();
+}
+renderQuestion();
+update();
+</script>
+</body>
+</html>
